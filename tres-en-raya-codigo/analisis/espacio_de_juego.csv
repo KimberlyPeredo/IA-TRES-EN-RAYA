@@ -1,0 +1,10 @@
+,valor
+posiciones (nodos),5478
+jugadas (aristas),16167
+posiciones terminales,958
+terminales: gana X,626
+terminales: gana O,316
+terminales: empate,16
+es un grafo sin ciclos,True
+partida mas larga (jugadas),9
+partidas distintas posibles,255168

@@ -1,0 +1,205 @@
+{
+ "ttt_estados": 5478,
+ "ttt_base": {
+  "azar": {
+   "azar": [
+    45.6,
+    12.8,
+    41.6
+   ],
+   "humano20": [
+    8.7,
+    14.6,
+    76.8
+   ],
+   "minimax": [
+    0.0,
+    12.2,
+    87.8
+   ]
+  },
+  "reglas": {
+   "azar": [
+    90.8,
+    8.2,
+    1.0
+   ],
+   "humano20": [
+    29.7,
+    63.0,
+    7.3
+   ],
+   "minimax": [
+    0.0,
+    89.2,
+    10.8
+   ]
+  },
+  "minimax": {
+   "azar": [
+    87.8,
+    12.2,
+    0.0
+   ],
+   "humano20": [
+    29.4,
+    70.7,
+    0.0
+   ],
+   "minimax": [
+    0.0,
+    100.0,
+    0.0
+   ]
+  }
+ },
+ "ttt_curva": {
+  "200": {
+   "vs_azar_gana": 46.7,
+   "vs_azar_pierde": 41.6,
+   "vs_hum_gana": 8.7,
+   "vs_hum_pierde": 77.9,
+   "vs_min_pierde": 87.5,
+   "vs_min_pierde_max": 92.7
+  },
+  "500": {
+   "vs_azar_gana": 47.9,
+   "vs_azar_pierde": 38.5,
+   "vs_hum_gana": 9.7,
+   "vs_hum_pierde": 76.5,
+   "vs_min_pierde": 85.3,
+   "vs_min_pierde_max": 87.0
+  },
+  "1000": {
+   "vs_azar_gana": 50.3,
+   "vs_azar_pierde": 38.2,
+   "vs_hum_gana": 10.5,
+   "vs_hum_pierde": 75.5,
+   "vs_min_pierde": 86.9,
+   "vs_min_pierde_max": 91.0
+  },
+  "2000": {
+   "vs_azar_gana": 56.6,
+   "vs_azar_pierde": 31.9,
+   "vs_hum_gana": 13.0,
+   "vs_hum_pierde": 72.8,
+   "vs_min_pierde": 84.8,
+   "vs_min_pierde_max": 88.3
+  },
+  "5000": {
+   "vs_azar_gana": 68.8,
+   "vs_azar_pierde": 18.6,
+   "vs_hum_gana": 17.9,
+   "vs_hum_pierde": 60.4,
+   "vs_min_pierde": 75.1,
+   "vs_min_pierde_max": 78.0
+  },
+  "10000": {
+   "vs_azar_gana": 84.4,
+   "vs_azar_pierde": 3.2,
+   "vs_hum_gana": 26.7,
+   "vs_hum_pierde": 20.2,
+   "vs_min_pierde": 25.3,
+   "vs_min_pierde_max": 29.7
+  },
+  "20000": {
+   "vs_azar_gana": 87.1,
+   "vs_azar_pierde": 0.3,
+   "vs_hum_gana": 29.4,
+   "vs_hum_pierde": 2.0,
+   "vs_min_pierde": 2.7,
+   "vs_min_pierde_max": 4.7
+  },
+  "50000": {
+   "vs_azar_gana": 87.7,
+   "vs_azar_pierde": 0.0,
+   "vs_hum_gana": 29.6,
+   "vs_hum_pierde": 0.0,
+   "vs_min_pierde": 0.0,
+   "vs_min_pierde_max": 0.0
+  }
+ },
+ "ttt_alfa": {
+  "0.1": {
+   "vs_azar_gana": 87.3,
+   "vs_min_pierde": 2.7,
+   "vs_hum_gana": 29.3
+  },
+  "0.3": {
+   "vs_azar_gana": 87.1,
+   "vs_min_pierde": 2.7,
+   "vs_hum_gana": 29.4
+  },
+  "0.5": {
+   "vs_azar_gana": 87.4,
+   "vs_min_pierde": 3.1,
+   "vs_hum_gana": 29.1
+  },
+  "0.9": {
+   "vs_azar_gana": 88.0,
+   "vs_min_pierde": 3.4,
+   "vs_hum_gana": 28.7
+  }
+ },
+ "ttt_oponente": {
+  "0.0": {
+   "vs_azar_gana": 87.3,
+   "vs_azar_pierde": 0.3,
+   "vs_min_pierde": 1.1,
+   "vs_hum_gana": 28.4,
+   "vs_hum_pierde": 1.0
+  },
+  "0.3": {
+   "vs_azar_gana": 87.1,
+   "vs_azar_pierde": 0.3,
+   "vs_min_pierde": 2.7,
+   "vs_hum_gana": 29.4,
+   "vs_hum_pierde": 2.0
+  },
+  "0.6": {
+   "vs_azar_gana": 86.7,
+   "vs_azar_pierde": 0.8,
+   "vs_min_pierde": 6.8,
+   "vs_hum_gana": 28.5,
+   "vs_hum_pierde": 5.7
+  }
+ },
+ "ttt_final_estados_q": 4520,
+ "ttt_final": {
+  "q": {
+   "azar": [
+    87.1,
+    12.9,
+    0.0
+   ],
+   "humano20": [
+    29.2,
+    70.8,
+    0.0
+   ],
+   "minimax": [
+    0.0,
+    100.0,
+    0.0
+   ]
+  },
+  "hibrido": {
+   "azar": [
+    87.1,
+    12.9,
+    0.0
+   ],
+   "humano20": [
+    29.4,
+    70.6,
+    0.0
+   ],
+   "minimax": [
+    0.0,
+    100.0,
+    0.0
+   ]
+  }
+ },
+ "segundos_total": 65
+}

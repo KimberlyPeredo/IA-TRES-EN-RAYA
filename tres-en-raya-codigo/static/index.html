@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tres en raya contra la IA</title>
+<style>
+  :root { --rosa:#ff6fa5; --azul:#3b82f6; --fondo:#f6f7fb; --tinta:#1f2937; --celda:#ffffff; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Arial, sans-serif; background:var(--fondo); color:var(--tinta); text-align:center; }
+  h1 { margin:18px 0 4px; font-size:26px; }
+  p.sub { margin:0 0 14px; color:#6b7280; }
+  #estado { min-height:28px; font-size:18px; margin:10px 0; font-weight:bold; }
+  .tablero { display:inline-grid; gap:6px; padding:8px; background:#cbd5e1; border-radius:10px; }
+  #tablero { grid-template-columns:repeat(3,92px); }
+  .c { background:var(--celda); border:none; border-radius:6px; cursor:pointer; font-size:48px; font-weight:bold; }
+  #tablero .c { height:92px; }
+  .c.X { color:var(--rosa); } .c.O { color:var(--azul); }
+  .c.gana { background:#fde68a; }
+  .opciones { margin:8px 0; } .opciones select, .opciones button { font-size:15px; padding:6px 10px; margin:0 3px; }
+  .marcador { margin:8px; font-size:17px; } .rosa-t { color:var(--rosa); font-weight:bold; } .azul-t { color:var(--azul); font-weight:bold; }
+  .nota { max-width:520px; margin:12px auto; color:#6b7280; font-size:14px; }
+</style>
+</head>
+<body>
+<h1>Tres en raya contra la IA</h1>
+<p class="sub">Una IA que aprendió jugando y que no se deja ganar</p>
+
+<section>
+  <div class="opciones">
+    Tú juegas con
+    <select id="ficha"><option value="1">X (empiezas tú)</option><option value="2">O (empieza la IA)</option></select>
+    <button onclick="nuevoT()">Nueva partida</button>
+  </div>
+  <div class="marcador">Tú: <b id="mT">0</b> · IA: <b id="mI">0</b> · Empates: <b id="mE">0</b></div>
+  <div id="estado"></div>
+  <div id="tablero" class="tablero"></div>
+  <p class="nota">Con juego perfecto el tres en raya termina en empate: la IA no pierde nunca, y gana cuando el humano se equivoca.</p>
+</section>
+
+<script>
+async function api(ruta, cuerpo) {
+  const r = await fetch(ruta, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cuerpo)});
+  if (!r.ok) throw new Error((await r.json()).error || 'error');
+  return r.json();
+}
+const marca = {0:'', 1:'X', 2:'O'};
+let t = Array(9).fill(0), ia = 2, ocupado = false, marc = {T:0, I:0, E:0};
+
+function dibujarT(e) {
+  const tab = document.getElementById('tablero'); tab.innerHTML = '';
+  t = e.tablero;
+  t.forEach((v,i) => {
+    const b = document.createElement('button'); b.className = 'c' + (v ? ' ' + marca[v] : '') + (e.linea && e.linea.includes(i) ? ' gana' : '');
+    b.textContent = marca[v]; b.disabled = v !== 0 || e.fin; b.onclick = () => jugarT(i); tab.appendChild(b);
+  });
+}
+async function nuevoT() {
+  ia = (document.getElementById('ficha').value === '1') ? 2 : 1;  // si el humano es X (1), la IA es O (2)
+  try { const e = await api('/api/ttt', {tablero:Array(9).fill(0), ia}); dibujarT(e); estadoT(e); }
+  catch (err) { document.getElementById('estado').textContent = 'Error: ' + err.message; }
+}
+function estadoT(e) {
+  const el = document.getElementById('estado');
+  if (!e.fin) { el.textContent = 'Tu turno'; return; }
+  if (e.ganador === 0) { el.textContent = 'Empate'; marc.E++; }
+  else if (e.ganador === ia) { el.textContent = 'Gana la IA'; marc.I++; }
+  else { el.textContent = '¡Ganaste!'; marc.T++; }
+  document.getElementById('mT').textContent = marc.T; document.getElementById('mI').textContent = marc.I; document.getElementById('mE').textContent = marc.E;
+}
+async function jugarT(i) {
+  if (ocupado) return; ocupado = true;
+  try { const e = await api('/api/ttt', {tablero:t, pos:i, ia}); dibujarT(e); estadoT(e); }
+  catch (err) { document.getElementById('estado').textContent = 'Error: ' + err.message; }
+  finally { ocupado = false; }
+}
+
+nuevoT();
+</script>
+</body>
+</html>
